@@ -1,73 +1,95 @@
-# Game Launch Automation
+# Game Add Dashboard
 
-Automation tool that collects game launch data from a URL and automatically submits it to a Google Form.
+Automation tool that collects game launch data from a Google Play Store URL and automatically submits it to a Google Form.
+
 Built with **Node.js, Express, Playwright, Axios, and franc**.
 
 ---
 
 # Overview
 
-This project automates the workflow of extracting game information and submitting it to a form without manual entry.
+This project automates the process of collecting game launch information from the Google Play Store and submitting it to a Google Form.
 
-The system:
+Instead of manually copying game details such as the game name, developer, and Play Store link, the system automatically extracts the required information and submits it to a dashboard.
 
-1. Accepts a game URL
-2. Extracts important game data
-3. Detects the language of the game description
-4. Submits the collected information to a Google Form
-
-This helps eliminate repetitive manual work and speeds up data collection.
+The automation significantly reduces manual effort and speeds up the workflow for tracking new game launches.
 
 ---
 
-## 🛠 Tech Stack
+## Sheet Link
 
-* **Node.js**
-* **Express.js**
-* **Playwright** (web automation)
-* **Axios** (HTTP requests)
-* **franc** (language detection)
+https://docs.google.com/spreadsheets/d/18Zc1F8TOE6cCWPNTNsTeRImzepJdGydfAD7nRx3ys9U/edit?gid=1115735951#gid=1115735951
 
 ---
 
-## ✨ Features
+# Tech Stack
 
-* Automated extraction of game data
-* Language detection from game text
-* Automatic Google Form submission
-* Backend API for processing URLs
-* Error handling and debugging logs
+* **Node.js** – JavaScript runtime for backend development
+* **Express.js** – Web framework used to build the API server
+* **Playwright** – Browser automation for scraping and form automation
+* **Axios** – HTTP client used to send form submissions
+* **franc** – Language detection library for detecting game language
 
 ---
 
-## 📂 Project Structure
+# Features
+
+* Automated extraction of game data from Play Store URLs
+* Automatic language detection from game text
+* Automated Google Form submission
+* Backend API endpoint to process URLs
+* Error handling and logging for debugging
+
+---
+
+# System Workflow
+
+User submits a Play Store URL
+↓
+Backend API receives the request
+↓
+Playwright opens the Play Store page
+↓
+Game information is extracted
+↓
+Language of the game title is detected
+↓
+Google Form is automatically filled
+↓
+Data is stored in Google Sheets
+
+---
+
+# Project Structure
 
 ```
-game-launch-automation
+game-add-dashboard
 │
 ├── server.js
 ├── package.json
 ├── utils
 │   └── languageDetector.js
-├── automation
-│   └── formSubmitter.js
+├── public
+│   └── index.html
+|   └── script.js
+|   └── stype.css  
 └── README.md
 ```
 
 ---
 
-## ⚙️ Installation
+# Installation
 
 Clone the repository:
 
 ```
-git clone https://github.com/YOUR_USERNAME/game-add-dashboard.git
+git clone https://github.com/gurpreetsingh911/game-add-dashboard.git
 ```
 
-Go into the project folder:
+Navigate into the project directory:
 
 ```
-cd game-launch-automation
+cd game-add-dashboard
 ```
 
 Install dependencies:
@@ -78,7 +100,7 @@ npm install
 
 ---
 
-## ▶️ Running the Project
+# Running the Project
 
 Start the server:
 
@@ -86,7 +108,7 @@ Start the server:
 node server.js
 ```
 
-The API will start on:
+The API server will run on:
 
 ```
 http://localhost:3000
@@ -94,39 +116,41 @@ http://localhost:3000
 
 ---
 
-## 📡 Example API Request
+# Example API Request
+
+Endpoint:
 
 ```
 POST /fetch-game
 ```
 
-Example body:
+Example request body:
 
 ```
 {
-  "url": "https://example-game-url.com"
+  "url": "https://play.google.com/store/apps/details?id=example"
 }
 ```
 
-The server processes the URL, extracts the game information, detects language, and submits the data to the Google Form.
+The server will:
+
+1. Open the Play Store page
+2. Extract the game information
+3. Detect the language
+4. Submit the data to the Google Form
+5. Store the response in Google Sheets
 
 ---
 
-## 🧠 Language Detection
+# Future Improvements
 
-The project uses **franc** to detect the language of game text and restricts detection to selected supported languages.
-
----
-
-## 📌 Future Improvements
-
-* Add database support
-* Add automated scheduling
-* Build a simple UI dashboard
-* Improve scraping accuracy
+* Add database support for storing game records
+* Build a frontend dashboard for submissions
+* Add scheduled automation for daily checks
+* Improve scraping reliability and error handling
 
 ---
 
-## 📄 License
+# License
 
 MIT License

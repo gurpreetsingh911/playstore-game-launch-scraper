@@ -1,104 +1,140 @@
-✅ Complete Flow — Game Link ➜ Trello Card
+# Game Link → Trello Card Automation Flow
 
-STEP 1 — User Input
+This system automates the process of collecting game launch information from the Google Play Store and creating a Trello card through an automated workflow.
 
-You create a small webpage/app:
+The goal is to eliminate manual data entry and speed up the process of adding new games to the tracking dashboard.
 
-Input box → Paste Google Play link
-Button → "Add Game"
+---
 
-User pastes:
+# System Workflow
+
+## Step 1 — User Input
+
+A small web interface allows the user to submit a Google Play Store link.
+
+Interface elements:
+
+* Input box → Paste Google Play Store link
+* Button → **Add Game**
+
+Example input:
 
 https://play.google.com/store/apps/details?id=com.xxx.game
 
+---
 
+## Step 2 — Send Request to Backend
 
-STEP 2 — Send Link to Backend
+When the **Add Game** button is clicked, the frontend sends the Play Store URL to the backend API.
 
-When button is clicked:
-
-Frontend → sends GP link → Backend API
-
-Example:
+Example API request:
 
 POST /fetch-game
+
+Request body:
+
 {
-   "url": "playstore link"
+"url": "playstore link"
 }
-STEP 3 — Open Play Store Page
 
-Backend script uses Playwright:
+---
 
-Launch browser
-Open Play Store URL
-Wait until page loads
-STEP 4 — Extract Game Details
+## Step 3 — Open Play Store Page
 
-Automation reads page elements and collects:
+The backend uses **Playwright automation** to open the Play Store page.
 
-Game Name
-Developer
-Package Name
-Category
-Rating
-Downloads
-Last Updated
-Icon URL
-Description
+Automation steps:
 
-Store data as JSON.
+1. Launch browser
+2. Open Play Store URL
+3. Wait for page to fully load
 
-STEP 5 — Map Data to Form Fields
+---
 
-Create mapping once:
+## Step 4 — Extract Game Information
 
-Game Name  → Form Field A
-Developer  → Form Field B
-Version    → Form Field C
-Platform   → Form Field D
-etc.
+The automation script reads elements from the page and extracts important game data.
 
-(You get field IDs from Google Form inspection.)
+Extracted fields include:
 
-STEP 6 — Auto Submit Google Form
+* Game Name
+* Developer Name
+* Package Name
+* Category
+* Rating
+* Downloads
+* Last Updated Date
+* Icon URL
+* Description
 
-Backend sends hidden form submission:
+All extracted information is stored as structured JSON data.
 
-POST → Google Form endpoint
+---
 
-Form gets submitted automatically.
+## Step 5 — Map Data to Form Fields
 
-(No manual typing.)
+Each extracted field is mapped to a corresponding Google Form field.
 
-STEP 7 — Google Form Automation Runs
+Example mapping:
 
-Existing system:
+Game Name → Form Field A
+Developer → Form Field B
+Version → Form Field C
+Platform → Form Field D
+
+Field IDs are obtained by inspecting the Google Form.
+
+---
+
+## Step 6 — Automatically Submit Google Form
+
+The backend sends a hidden POST request to the Google Form endpoint.
+
+This automatically submits the collected data without requiring manual typing.
+
+---
+
+## Step 7 — Existing Automation Workflow
+
+After the form submission, the existing automation pipeline handles the rest of the process.
 
 Google Form
-   ↓
-Google Sheet
-   ↓
-Automation
-   ↓
+↓
+Google Sheets
+↓
+Automation Script
+↓
 Trello Card Created
 
-Nothing changes here.
+No changes are required in this part of the system.
 
-STEP 8 — Show Success Message
+---
 
-Frontend displays:
+## Step 8 — Success Response
+
+Once the process completes, the frontend displays a confirmation message.
+
+Example message:
 
 ✅ Game Added Successfully
 Trello card created
-🔁 Final Workflow (Your Daily Use)
-Paste Play Store Link
-        ↓
-Click Add Game
-        ↓
-System fetches details
-        ↓
-Form auto-filled
-        ↓
-Trello card appears
 
-Time taken: ~5 seconds per game
+---
+
+# Final User Workflow
+
+Daily usage flow:
+
+Paste Play Store link
+↓
+Click **Add Game**
+↓
+System fetches game details
+↓
+Google Form is auto-filled
+↓
+Trello card is created
+
+Average processing time: **~5 seconds per game**
+
+------------------------------------------------------------------------------------------------

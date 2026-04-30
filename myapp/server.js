@@ -52,15 +52,6 @@ app.post("/fetch-game", async (req, res) => {
       });
     }
 
-    // Validate URL format
-    try {
-      new URL(url);
-    } catch {
-      return res.status(400).json({
-        error: "Invalid URL format"
-      });
-    }
-
     // Check if it is Play Store link
     if (!url.includes("play.google.com")) {
       return res.status(400).json({
@@ -197,48 +188,49 @@ app.post("/fetch-game", async (req, res) => {
     await browser.close();
 
     //  Optional form submission via API
-    await axios.post(
-      "https://docs.google.com/forms/d/e/1FAIpQLSefoeEJUV7joqOQGsHFFf4ukw5NhtnFZYZVwjnUzg9Kpsqcig/formResponse",
-      new URLSearchParams({
-        "entry.1645981813": gameTitle,
-        "entry.1449005772": Google_link,
-        "entry.1685270148": developer,
-        "entry.558663507": "IP2"
-      }),
-      {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
-      }
-    );
-
+    // await axios.post(
+    //   "https://docs.google.com/forms/d/e/1FAIpQLSefoeEJUV7joqOQGsHFFf4ukw5NhtnFZYZVwjnUzg9Kpsqcig/formResponse",
+    //   new URLSearchParams({
+    //     "entry.1645981813": gameTitle,
+    //     "entry.1449005772": Google_link,
+    //     "entry.1685270148": developer,
+    //     "entry.558663507": "IP2"
+    //   }),
+    //   {
+    //     headers: {
+    //       "Content-Type": "application/x-www-form-urlencoded",
+    //       "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)...",
+    //       "Accept": "text/html,application/xhtml+xml"
+    //     }
+    //   }
+    // );
 
 
     // API response
-    res.json({
-      message: "Game fetched",
-      gameName: gameTitle,
-      googleLink: Google_link,
-      developer,
-      developerWebsite: dev_href,
-      targetGeo: language,
-      status: "success",
-      message: "Game added successfully and submitted to Google Form"
-    });
+    // Cleaned up API response in server.js
+  res.json({
+    status: "success",
+    message: "Game added successfully and submitted to Google Form",
+    gameName: gameTitle,
+    googleLink: Google_link,
+    developer: developer,
+    developerWebsite: dev_href,
+    targetGeo: language
+});
 
-  } catch (error) {
-
-    console.error(error);
-
+  }  catch (error) {
+    console.error("❌ Backend Error:", error.message);
+    
+    // ✅ Close browser FIRST
     if (browser) {
       await browser.close();
     }
+    
+    // ✅ Then send ONE response
+    res.status(500).json({ error: error.message });
+}
 
-    res.status(500).json({
-      error: "Failed to fetch game data"
-    });
 
-  }
 
 });
 

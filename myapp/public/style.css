@@ -1,3 +1,19 @@
+ body {
+    /* Removes default browser spacing */
+    margin: 0;
+    padding: 0;
+
+    /* Use a container or small padding for spacing content */
+    padding: 20px; 
+    
+    /* Good for readability */
+    font-family: sans-serif;
+    line-height: 1.6;
+
+    /* Contrast: Use a dark background if using 'wheat' text */
+    background-color: wheat;
+    color: #2c2c2c; 
+}
    body {
        font-family: Arial;
        margin: 40px;
@@ -16,4 +32,12 @@
    #result {
        margin-top: 30px;
        font-size: 18px;
+   }
+
+   #gameLaunchTool{
+    margin-left: 30%;
+   }
+
+   .main_body{
+    margin-left: 10%;
    }

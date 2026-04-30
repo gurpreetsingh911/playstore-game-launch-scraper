@@ -9,20 +9,29 @@
 
 <body>
 
-<h2>Game Launch Automation Tool</h2>
-
-<input id="gameUrl" placeholder="Paste Play Store URL">
-
-<button onclick="fetchGame()">Add Game</button>
+<h2 id ="gameLaunchTool">Game Launch Automation Tool</h2>
+<br>
 
 
-<div id="result"></div>
+<div class="main_body"> 
+    <input id="gameUrlInput" placeholder="Paste Play Store URL">
 
-<div id="message"></div>
+    <button onclick="fetchGame()">Add Game</button>
 
-<h1>Last 5 Games added table to be implemented </h1>
+    <div id="message"></div>
+
+    <div id="result">
+        <p>Game Name: <span id="resName"></span></p>
+        <p>Developer: <span id="resDev"></span></p>
+        <p>Link: <span id="resLink"></span></p>
+    </div>
+</div>
+
+
+
+<h1 id= "first">Last 5 Games added table to be implemented </h1>
   
- 
+
 
 
 <script src="script.js"></script>
