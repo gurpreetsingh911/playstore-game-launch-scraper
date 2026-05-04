@@ -7,17 +7,27 @@
     padding: 20px; 
     
     /* Good for readability */
-    font-family: sans-serif;
+    font-family: monospace;
+    font-size: 14px;
     line-height: 1.6;
 
     /* Contrast: Use a dark background if using 'wheat' text */
     background-color: wheat;
-    color: #2c2c2c; 
+    color: white; 
+
+    font-family: Arial;
+    margin: 40px;
+
+    /* background-image: url('./myapp/public/1.png'); */
+
+    background-image: url('./1.png');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
 }
-   body {
-       font-family: Arial;
-       margin: 40px;
-   }
 
    input {
        width: 450px;
