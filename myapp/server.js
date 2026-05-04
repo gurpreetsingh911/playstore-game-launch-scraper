@@ -208,29 +208,26 @@ app.post("/fetch-game", async (req, res) => {
 
     // API response
     // Cleaned up API response in server.js
-  res.json({
-    status: "success",
-    message: "Game added successfully and submitted to Google Form",
-    gameName: gameTitle,
-    googleLink: Google_link,
-    developer: developer,
-    developerWebsite: dev_href,
-    targetGeo: language
-});
+    res.json({
+      status: "success",
+      message: "Game added successfully and submitted to Google Form",
+      gameName: gameTitle,
+      googleLink: Google_link,
+      developer: developer,
+      developerWebsite: dev_href,
+      targetGeo: language
+    });
 
-  }  catch (error) {
+  } catch (error) {
     console.error("❌ Backend Error:", error.message);
-    
+
     // ✅ Close browser FIRST
     if (browser) {
       await browser.close();
     }
-    
+
     // ✅ Then send ONE response
     res.status(500).json({ error: error.message });
-}
-
-
+  }
 
 });
-

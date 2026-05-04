@@ -3,7 +3,7 @@ async function fetchGame() {
   const url = urlInput.value.trim(); //  .trim() removes accidental spaces
   const messageDiv = document.getElementById("message");
   const table = document.getElementById("first");
-  
+
   //  Guard: stop early if empty
   if (!url) {
     messageDiv.innerText = "❌ Please enter a URL!";
@@ -21,9 +21,9 @@ async function fetchGame() {
     console.log("Data from backend:", data); //  keep this for debugging
 
     if (response.ok) {
-    document.getElementById("resName").innerText = data.gameName;   // 
-    document.getElementById("resDev").innerText = data.developer;   // 
-    document.getElementById("resLink").innerText = data.googleLink; //
+      document.getElementById("resName").innerText = data.gameName;   // 
+      document.getElementById("resDev").innerText = data.developer;   // 
+      document.getElementById("resLink").innerText = data.googleLink; //
 
     } else {
       messageDiv.innerText = "❌ Error: " + (data.error || "Server crash");
@@ -34,5 +34,4 @@ async function fetchGame() {
     messageDiv.innerText = "❌ Network error, check console."; //  show error on page too
   }
 
- 
 }
